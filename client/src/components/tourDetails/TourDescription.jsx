@@ -147,7 +147,7 @@ const TourDescription = ({ tour }) => {
           {tour.guides.map((guide) => (
             <Typography className={classes.tourSubDescription}>
               <img
-                src={`/img/users/${guide.photo}`}
+                src={`${process.env.REACT_APP_USER_IMG_ROUTE}/${guide.photo}`}
                 alt={`${guide.name}`}
                 className={classes.tourLabelImage}
               />

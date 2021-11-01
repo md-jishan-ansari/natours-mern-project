@@ -89,7 +89,8 @@ export default function UserProfileData() {
     photo: null,
   });
   const [image, setImage] = useState(
-    ctx.userData.data.user.photo && `/img/users/${ctx?.userData?.data?.user?.photo}`
+    ctx.userData.data.user.photo &&
+      `${process.env.REACT_APP_USER_IMG_ROUTE}/${ctx?.userData?.data?.user?.photo}`
   );
   console.log(ctx.userData.data.user.photo, image);
 

@@ -35,13 +35,13 @@ const TourPictures = ({ tourImages }) => {
   return (
     <Box className={classes.imageContainer}>
       <Box className={classes.image1}>
-        <img src={`/img/tours/${tourImages[0]}`} alt="tour scean 1" />
+        <img src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tourImages[0]}`} alt="tour scean 1" />
       </Box>
       <Box className={classes.image2}>
-        <img src={`/img/tours/${tourImages[1]}`} alt="tour scean 2" />
+        <img src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tourImages[1]}`} alt="tour scean 2" />
       </Box>
       <Box className={classes.image3}>
-        <img src={`/img/tours/${tourImages[2]}`} alt="tour scean 3" />
+        <img src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tourImages[2]}`} alt="tour scean 3" />
       </Box>
     </Box>
   );

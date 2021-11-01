@@ -1,37 +1,24 @@
 import { AppBar, Toolbar, Typography, Box, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   footer: {
     backgroundColor: '#f7f7f7',
     padding: '40px 30px 30px 30px',
   },
-  footerContainer: {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    [theme.breakpoints.down('md')]: {
-      textAlign: 'center',
-      justifyContent: 'center',
-    },
-  },
   footerItem: {
     display: 'flex',
     flexFlow: 'column wrap',
-    [theme.breakpoints.up('md')]: {
-      marginLeft: 'auto',
-    },
+    marginLeft: 'auto',
   },
   footerImage: {
     height: 36,
   },
   list: {
     display: 'flex',
-    flexFlow: 'row wrap',
     listStyle: 'none',
 
     '&>*': {
-      padding: '0 10px',
-      margin: 5,
       '&>*': {
         textDecoration: 'none',
         color: '#777',
@@ -43,23 +30,20 @@ const useStyles = makeStyles((theme) => ({
         color: '#55c57a',
       },
     },
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
-    },
   },
   footerCopyright: {
     margin: '0 0 0 auto',
     color: '#999',
     fontSize: 13,
   },
-}));
+});
 
 const Footer = () => {
   const classes = useStyles();
 
   return (
     <AppBar className={classes.footer}>
-      <Toolbar className={classes.footerContainer}>
+      <Toolbar>
         <Box>
           <img src="/img/logo-green.png" alt="Natour logo" className={classes.footerImage} />
         </Box>

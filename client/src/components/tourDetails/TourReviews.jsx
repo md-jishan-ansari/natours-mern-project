@@ -96,7 +96,10 @@ const TourReviews = ({ reviews }) => {
             <CardContent>
               <Box className={classes.header}>
                 <Box className={classes.headerImg}>
-                  <img src={`/img/users/${review.user.photo}`} alt={`{review.user.name}`} />
+                  <img
+                    src={`${process.env.REACT_APP_USER_IMG_ROUTE}/${review.user.photo}`}
+                    alt={`{review.user.name}`}
+                  />
                 </Box>
                 <Typography className={classes.heading}>{review.user.name}</Typography>
               </Box>

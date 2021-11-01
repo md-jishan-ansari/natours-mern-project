@@ -124,7 +124,7 @@ const UserProfile = () => {
   return (
     ctx?.userData && (
       <Box className={classes.container}>
-        <Box>
+        <Box sx={{ display: 'flex' }}>
           <Drawer variant="permanent" open={open}>
             <Hidden mdUp>
               <DrawerHeader>
@@ -185,7 +185,7 @@ const UserProfile = () => {
                 index={4}
               />
             </List>
-            {ctx?.userData?.data?.user?.role === 'admin' && (
+            {ctx.userData.data.user.role === 'admin' && (
               <>
                 <Typography style={{ margin: '30px 0 0 10px', color: '#ffffff' }}>ADMIN</Typography>
                 <Divider />

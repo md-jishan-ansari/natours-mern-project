@@ -10,36 +10,33 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#f7f7f7',
     [theme.breakpoints.down('sm')]: {
       marginTop: 0,
-      padding: '100px 50px',
       clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)',
     },
   },
   ctaContainer: {
-    maxWidth: 1050,
+    maxWidth: 1010,
     margin: '0 auto',
     position: 'relative',
-    padding: '50px 50px 50px 0',
+    padding: '90px 50px 90px 220px',
     borderRadius: '20px',
     backgroundColor: '#ffffff',
-    [theme.breakpoints.down('sm')]: {
-      padding: 50,
-    },
   },
+  content: {
+    paddingTop: 0,
+  },
+  ctaCard: {},
 
-  //   images
-  images: {
-    position: 'relative',
-    height: 150,
-  },
+  // images
+
+  images: {},
+
   ctaImg: {
-    position: 'absolute',
-    top: 0,
     width: 150,
     height: 150,
+    // position: 'absolute',
+    left: 0,
+    top: '50%',
     borderRadius: '50%',
-    [theme.breakpoints.down('sm')]: {
-      left: '50%',
-    },
   },
 
   image1: {
@@ -49,92 +46,43 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     background: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
     zIndex: 10,
-    transform: 'translateX(-35%)',
-    [theme.breakpoints.down('sm')]: {
-      transform: 'translateX(-90%)',
-    },
+    transform: 'translate(-35%, -50%)',
   },
-
   image2: {
     zIndex: 9,
-    transform: 'translateX(-10%) scale(0.97)',
-    [theme.breakpoints.down('sm')]: {
-      transform: 'translateX(-50%) scale(0.97)',
-    },
+    transform: 'translate(-10%, -50%) scale(0.97)',
   },
   image3: {
     zIndex: 8,
-    transform: 'translateX(15%) scale(0.94)',
-    [theme.breakpoints.down('sm')]: {
-      transform: 'translateX(-10%) scale(0.94)',
-    },
+    transform: 'translate(15%, -50%) scale(0.94)',
   },
 
-  //content
+  // contentContainer
 
-  content: {
+  contentContaniner: {
     margin: 'auto 0',
   },
-
-  contentOverview: {
-    paddingLeft: 40,
-    [theme.breakpoints.down('md')]: {
-      marginTop: 20,
-      paddingLeft: '0',
-    },
-  },
-
-  heading: {
-    fontSize: 23,
-    fontweight: '700',
-    backgroundImage: 'linear-gradient(to right, #7dd56f, #28b487)',
-    '-webkit-background-clip': 'text',
-    color: 'transparent',
-    letterSpacing: '0.1rem',
-    lineHeight: '1.3',
-  },
-
-  summary: {
-    fontFamily: 'Lato, sans-serif',
-    fontSize: 19,
-    fontWeight: 400,
-    color: '#777',
-  },
-
-  //Button
-
   BookingButton: {
     backgroundColor: '#55c57a',
     color: 'white',
     padding: '14px 30px',
-    marginLeft: '30px',
-
-    fontSize: '16px',
-    fontFamily: 'Lato, sans-serif',
+    font: "16px 'Lato, sans-serif'",
     borderRadius: 100,
+    marginLeft: 'auto',
     '&:hover': {
       backgroundColor: '#55c57a',
-    },
-
-    [theme.breakpoints.down('md')]: {
-      marginTop: 20,
-      marginLeft: 'auto',
-    },
-    [theme.breakpoints.down('xs')]: {
-      padding: '14px 20px',
     },
   },
 }));
 
 const TourCta = ({ images, duration }) => {
   const classes = useStyles();
-  console.log(`${process.env.REACT_APP_USER_IMG_ROUTE}/img/logo-white.png`);
   return (
     <Box className={classes.container}>
       <Card className={classes.ctaContainer}>
-        <CardContent>
+        <CardContent className={classes.content}>
           <Grid container>
-            <Grid item lg={2} md={4} sm={12} xs={12} className={classes.images}>
+            <Grid item md={3} className={classes.images}>
               <Box className={clsx(classes.ctaImg, classes.image1)}>
                 <img style={{ height: 'unset' }} src="/img/logo-white.png" alt="logo" />
               </Box>
@@ -149,15 +97,15 @@ const TourCta = ({ images, duration }) => {
                 className={clsx(classes.image3, classes.ctaImg)}
               />
             </Grid>
-            <Grid item lg={10} md={8} sm={12} className={classes.content}>
-              <Grid container>
-                <Grid item lg={8} md={12} className={classes.contentOverview}>
+            <Grid item md={9}>
+              <Grid container className={classes.contentContaniner}>
+                <Grid item className={classes.ctaContent}>
                   <Typography className={classes.heading}>WHAT ARE YOU WAITING FOR? </Typography>
-                  <Typography className={classes.summary}>
+                  <Typography>
                     {duration} days. 1 adventure. Infinite memories. Make it yours today!{' '}
                   </Typography>
                 </Grid>
-                <Grid item lg={4} md={12} style={{ marginLeft: 'auto' }}>
+                <Grid item style={{ marginLeft: 'auto' }}>
                   <Button variant="contained" className={classes.BookingButton}>
                     Log in to book tour
                   </Button>

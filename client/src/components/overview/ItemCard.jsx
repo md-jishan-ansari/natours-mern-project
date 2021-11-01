@@ -147,7 +147,10 @@ const ItemCard = ({ tour }) => {
         <Box className={classes.cardHeader}>
           <Box className={classes.cardPicture}>
             <Box className={classes.cardPictureOverlay}></Box>
-            <img src={`/img/tours/${tour.imageCover}`} alt={`${tour.name}`} />
+            <img
+              src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tour.imageCover}`}
+              alt={`${tour.name}`}
+            />
           </Box>
           <Typography variant="h3" className={classes.cardHeading}>
             <span>{tour.name}</span>

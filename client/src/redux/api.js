@@ -5,7 +5,6 @@ const { DB_ROUTE } = variable;
 
 const Api = axios.create({ baseURL: DB_ROUTE });
 
-
 Api.interceptors.request.use((req) => {
     const userData = JSON.parse(localStorage.getItem('profile'));
     // console.log(userData);
