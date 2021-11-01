@@ -3,6 +3,9 @@ import { Box, Typography, makeStyles, Grid } from '@material-ui/core';
 // icons
 import { AccessTime, LocationOnOutlined } from '@material-ui/icons';
 
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
+
 const useStyles = makeStyles((theme) => ({
   tourHeader: {
     position: 'relative',
@@ -94,7 +97,7 @@ const TourHeader = ({ tour }) => {
       <Box className={classes.imgOverlay}></Box>
       <Box className={classes.coverImg}>
         <img
-          src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tour.imageCover}`}
+          src={`${DB_ROUTE}/img/tours/${tour.imageCover}`}
           alt={`${tour.name}`}
         />
       </Box>

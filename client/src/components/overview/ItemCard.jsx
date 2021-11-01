@@ -1,5 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Box, Button, Typography, Card, CardContent, makeStyles, Grid } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  makeStyles,
+  Grid,
+} from '@material-ui/core';
 
 // icons
 import {
@@ -8,6 +16,9 @@ import {
   CalendarTodayOutlined,
   PersonOutlineOutlined,
 } from '@material-ui/icons';
+
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -136,8 +147,6 @@ const useStyles = makeStyles((theme) => ({
 const ItemCard = ({ tour }) => {
   const classes = useStyles();
 
-  console.log(process.env.REACT_APP_TOUR_IMG_ROUTE);
-
   return (
     <Card className={classes.cardContainer}>
       <CardContent className={classes.card}>
@@ -148,7 +157,7 @@ const ItemCard = ({ tour }) => {
           <Box className={classes.cardPicture}>
             <Box className={classes.cardPictureOverlay}></Box>
             <img
-              src={`${process.env.REACT_APP_TOUR_IMG_ROUTE}/${tour.imageCover}`}
+              src={`${DB_ROUTE}/img/tours/${tour.imageCover}`}
               alt={`${tour.name}`}
             />
           </Box>
@@ -196,12 +205,18 @@ const ItemCard = ({ tour }) => {
         <Box className={classes.cardFooter}>
           <Box>
             <Typography style={{ marginBottom: '5px' }}>
-              <span className={classes.cardFooterValue}>{`$${tour.price}`}</span>
+              <span
+                className={classes.cardFooterValue}
+              >{`$${tour.price}`}</span>
               <span className={classes.cardFooterText}>per person</span>
             </Typography>
             <Typography>
-              <span className={classes.cardFooterValue}>{tour.ratingsAverage}</span>
-              <span className={classes.cardFooterText}>rating ({tour.ratingsQuantity})</span>
+              <span className={classes.cardFooterValue}>
+                {tour.ratingsAverage}
+              </span>
+              <span className={classes.cardFooterText}>
+                rating ({tour.ratingsQuantity})
+              </span>
             </Typography>
           </Box>
           <Link to={`/tour/${tour._id}`}>

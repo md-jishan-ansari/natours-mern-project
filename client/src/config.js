@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
     }
 } else {
     variable = {
-        DB_ROUTE: "http://localhost:8000",
+        DB_ROUTE: "http://localhost:9000",
         FRONT_ROUTE: "http://localhost:3000"
     }
 }

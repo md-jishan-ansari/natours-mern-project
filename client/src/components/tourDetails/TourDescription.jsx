@@ -8,6 +8,9 @@ import {
   ArrowUpward,
 } from '@material-ui/icons';
 
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
+
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: '-138px',
@@ -126,17 +129,24 @@ const TourDescription = ({ tour }) => {
           <Typography className={classes.tourSubDescription}>
             <ArrowUpward className={classes.tourIcon} />
             <span className={classes.tourLabel}>Difficulty</span>
-            <span className={classes.tourLabelDescription}>{tour.difficulty}</span>
+            <span className={classes.tourLabelDescription}>
+              {tour.difficulty}
+            </span>
           </Typography>
           <Typography className={classes.tourSubDescription}>
             <PersonOutlineOutlined className={classes.tourIcon} />
             <span className={classes.tourLabel}>Participants</span>
-            <span className={classes.tourLabelDescription}>{tour.maxGroupSize} people</span>]
+            <span className={classes.tourLabelDescription}>
+              {tour.maxGroupSize} people
+            </span>
+            ]
           </Typography>
           <Typography className={classes.tourSubDescription}>
             <StarOutlineOutlined className={classes.tourIcon} />
             <span className={classes.tourLabel}>Rating</span>
-            <span className={classes.tourLabelDescription}>{tour.ratingsAverage}/5</span>
+            <span className={classes.tourLabelDescription}>
+              {tour.ratingsAverage}/5
+            </span>
           </Typography>
         </Box>
 
@@ -147,7 +157,7 @@ const TourDescription = ({ tour }) => {
           {tour.guides.map((guide) => (
             <Typography className={classes.tourSubDescription}>
               <img
-                src={`${process.env.REACT_APP_USER_IMG_ROUTE}/${guide.photo}`}
+                src={`${DB_ROUTE}/img/users/${guide.photo}`}
                 alt={`${guide.name}`}
                 className={classes.tourLabelImage}
               />
@@ -161,8 +171,12 @@ const TourDescription = ({ tour }) => {
         <Typography variant="h5" className={classes.headingSecondary}>
           ABOUT {tour.name}
         </Typography>
-        <Typography className={classes.descriptionParagraph}>{description[0]}</Typography>
-        <Typography className={classes.descriptionParagraph}>{description[1]}</Typography>
+        <Typography className={classes.descriptionParagraph}>
+          {description[0]}
+        </Typography>
+        <Typography className={classes.descriptionParagraph}>
+          {description[1]}
+        </Typography>
       </Grid>
     </Grid>
   );

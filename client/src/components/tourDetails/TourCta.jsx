@@ -1,6 +1,17 @@
 import clsx from 'clsx';
 
-import { Typography, Box, Card, CardContent, Button, Grid, makeStyles } from '@material-ui/core';
+import {
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  Button,
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
+
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -10,33 +21,36 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#f7f7f7',
     [theme.breakpoints.down('sm')]: {
       marginTop: 0,
+      padding: '100px 50px',
       clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)',
     },
   },
   ctaContainer: {
-    maxWidth: 1010,
+    maxWidth: 1050,
     margin: '0 auto',
     position: 'relative',
-    padding: '90px 50px 90px 220px',
+    padding: '50px 50px 50px 0',
     borderRadius: '20px',
     backgroundColor: '#ffffff',
+    [theme.breakpoints.down('sm')]: {
+      padding: 50,
+    },
   },
-  content: {
-    paddingTop: 0,
+
+  //   images
+  images: {
+    position: 'relative',
+    height: 150,
   },
-  ctaCard: {},
-
-  // images
-
-  images: {},
-
   ctaImg: {
+    position: 'absolute',
+    top: 0,
     width: 150,
     height: 150,
-    // position: 'absolute',
-    left: 0,
-    top: '50%',
     borderRadius: '50%',
+    [theme.breakpoints.down('sm')]: {
+      left: '50%',
+    },
   },
 
   image1: {
@@ -46,31 +60,79 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     background: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
     zIndex: 10,
-    transform: 'translate(-35%, -50%)',
+    transform: 'translateX(-35%)',
+    [theme.breakpoints.down('sm')]: {
+      transform: 'translateX(-90%)',
+    },
   },
+
   image2: {
     zIndex: 9,
-    transform: 'translate(-10%, -50%) scale(0.97)',
+    transform: 'translateX(-10%) scale(0.97)',
+    [theme.breakpoints.down('sm')]: {
+      transform: 'translateX(-50%) scale(0.97)',
+    },
   },
   image3: {
     zIndex: 8,
-    transform: 'translate(15%, -50%) scale(0.94)',
+    transform: 'translateX(15%) scale(0.94)',
+    [theme.breakpoints.down('sm')]: {
+      transform: 'translateX(-10%) scale(0.94)',
+    },
   },
 
-  // contentContainer
+  //content
 
-  contentContaniner: {
+  content: {
     margin: 'auto 0',
   },
+
+  contentOverview: {
+    paddingLeft: 40,
+    [theme.breakpoints.down('md')]: {
+      marginTop: 20,
+      paddingLeft: '0',
+    },
+  },
+
+  heading: {
+    fontSize: 23,
+    fontweight: '700',
+    backgroundImage: 'linear-gradient(to right, #7dd56f, #28b487)',
+    '-webkit-background-clip': 'text',
+    color: 'transparent',
+    letterSpacing: '0.1rem',
+    lineHeight: '1.3',
+  },
+
+  summary: {
+    fontFamily: 'Lato, sans-serif',
+    fontSize: 19,
+    fontWeight: 400,
+    color: '#777',
+  },
+
+  //Button
+
   BookingButton: {
     backgroundColor: '#55c57a',
     color: 'white',
     padding: '14px 30px',
-    font: "16px 'Lato, sans-serif'",
+    marginLeft: '30px',
+
+    fontSize: '16px',
+    fontFamily: 'Lato, sans-serif',
     borderRadius: 100,
-    marginLeft: 'auto',
     '&:hover': {
       backgroundColor: '#55c57a',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      marginTop: 20,
+      marginLeft: 'auto',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: '14px 20px',
     },
   },
 }));
@@ -80,32 +142,39 @@ const TourCta = ({ images, duration }) => {
   return (
     <Box className={classes.container}>
       <Card className={classes.ctaContainer}>
-        <CardContent className={classes.content}>
+        <CardContent>
           <Grid container>
-            <Grid item md={3} className={classes.images}>
+            <Grid item lg={2} md={4} sm={12} xs={12} className={classes.images}>
               <Box className={clsx(classes.ctaImg, classes.image1)}>
-                <img style={{ height: 'unset' }} src="/img/logo-white.png" alt="logo" />
+                <img
+                  style={{ height: 'unset' }}
+                  src={`${DB_ROUTE}/img/logo-white.png`}
+                  alt="logo"
+                />
               </Box>
               <img
-                src={`/img/tours/${images[1]}`}
+                src={`${DB_ROUTE}/img/tours/${images[1]}`}
                 alt="photo1"
                 className={clsx(classes.image2, classes.ctaImg)}
               />
               <img
-                src={`/img/tours/${images[2]}`}
+                src={`${DB_ROUTE}/img/tours/${images[2]}`}
                 alt="photo1"
                 className={clsx(classes.image3, classes.ctaImg)}
               />
             </Grid>
-            <Grid item md={9}>
-              <Grid container className={classes.contentContaniner}>
-                <Grid item className={classes.ctaContent}>
-                  <Typography className={classes.heading}>WHAT ARE YOU WAITING FOR? </Typography>
-                  <Typography>
-                    {duration} days. 1 adventure. Infinite memories. Make it yours today!{' '}
+            <Grid item lg={10} md={8} sm={12} className={classes.content}>
+              <Grid container>
+                <Grid item lg={8} md={12} className={classes.contentOverview}>
+                  <Typography className={classes.heading}>
+                    WHAT ARE YOU WAITING FOR?{' '}
+                  </Typography>
+                  <Typography className={classes.summary}>
+                    {duration} days. 1 adventure. Infinite memories. Make it
+                    yours today!{' '}
                   </Typography>
                 </Grid>
-                <Grid item style={{ marginLeft: 'auto' }}>
+                <Grid item lg={4} md={12} style={{ marginLeft: 'auto' }}>
                   <Button variant="contained" className={classes.BookingButton}>
                     Log in to book tour
                   </Button>

@@ -19,7 +19,9 @@ const Overview = () => {
   const classes = useStyles();
 
   //   1)get tour data form collection
-  const { data: tourData } = useSelector((state) => state.toursReducer.AllTours);
+  const { data: tourData } = useSelector(
+    (state) => state.toursReducer.AllTours
+  );
   let tours;
   for (const x in tourData) {
     tours = tourData[x];
@@ -32,7 +34,11 @@ const Overview = () => {
   }, [dispatch]);
 
   return (
-    <Grid container justifyContent="space-between" className={classes.container}>
+    <Grid
+      container
+      justifyContent="space-between"
+      className={classes.container}
+    >
       {tours &&
         tours.map((tour) => (
           <Grid key={tour.id} item lg={4} md={6} sm={12}>

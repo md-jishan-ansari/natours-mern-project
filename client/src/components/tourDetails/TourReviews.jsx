@@ -1,8 +1,18 @@
 import 'react-multi-carousel/lib/styles.css';
 
-import { Box, Typography, makeStyles, Card, CardContent, Grid } from '@material-ui/core';
+import {
+  Box,
+  Typography,
+  makeStyles,
+  Card,
+  CardContent,
+  Grid,
+} from '@material-ui/core';
 
 import { StarOutlineOutlined } from '@material-ui/icons';
+
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
 
 const useStyles = makeStyles((theme) => ({
   reviewContainer: {
@@ -97,11 +107,13 @@ const TourReviews = ({ reviews }) => {
               <Box className={classes.header}>
                 <Box className={classes.headerImg}>
                   <img
-                    src={`${process.env.REACT_APP_USER_IMG_ROUTE}/${review.user.photo}`}
+                    src={`${DB_ROUTE}/img/users/${review.user.photo}`}
                     alt={`{review.user.name}`}
                   />
                 </Box>
-                <Typography className={classes.heading}>{review.user.name}</Typography>
+                <Typography className={classes.heading}>
+                  {review.user.name}
+                </Typography>
               </Box>
               <Box className={classes.content}>{review.review}</Box>
               <Box className={classes.footer}>

@@ -6,6 +6,9 @@ import { Button, Box, makeStyles, Hidden, Avatar } from '@material-ui/core';
 
 import { LOGOUT_SUCCESS } from '../../redux/constants/authanticationConstant';
 
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
+
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginLeft: 'auto',
@@ -76,7 +79,7 @@ const HeaderButtons = () => {
           <Button component={Link} to="/me" className={classes.userButton}>
             <Avatar
               className={classes.avator}
-              src={`${process.env.REACT_APP_USER_IMG_ROUTE}/${ctx?.userData?.data?.user?.photo}`}
+              src={`${DB_ROUTE}/img/users/${ctx?.userData?.data?.user?.photo}`}
             >
               {ctx?.userData?.data?.user?.name.charAt(0)}
             </Avatar>

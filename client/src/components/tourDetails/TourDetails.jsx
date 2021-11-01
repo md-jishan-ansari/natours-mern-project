@@ -11,7 +11,7 @@ import TourDescription from './TourDescription';
 import TourPictures from './TourPictures';
 import TourReviews from './TourReviews';
 import MapBox from './MapBox';
-import TourCta from './TourCta2';
+import TourCta from './TourCta';
 
 import Error from '../Error';
 

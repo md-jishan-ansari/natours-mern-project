@@ -7,7 +7,13 @@ import { AccountCircle } from '@mui/icons-material';
 
 import Input from '../authantication/Input';
 import TemplateContext from '../../template/TemplateProvider';
-import { updateUser, updatePassword } from '../../redux/actions/authanticationAction';
+import {
+  updateUser,
+  updatePassword,
+} from '../../redux/actions/authanticationAction';
+
+import variable from '../../config.js';
+const { DB_ROUTE } = variable;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -90,7 +96,7 @@ export default function UserProfileData() {
   });
   const [image, setImage] = useState(
     ctx.userData.data.user.photo &&
-      `${process.env.REACT_APP_USER_IMG_ROUTE}/${ctx?.userData?.data?.user?.photo}`
+      `${DB_ROUTE}/img/users/${ctx?.userData?.data?.user?.photo}`
   );
   console.log(ctx.userData.data.user.photo, image);
 
@@ -179,7 +185,10 @@ export default function UserProfileData() {
         </Button>
       </form>
       <Divider />
-      <form onSubmit={submitUpdatedPasswordHandler} className={classes.formContainer}>
+      <form
+        onSubmit={submitUpdatedPasswordHandler}
+        className={classes.formContainer}
+      >
         <Typography variant="h5" className={classes.formHeading}>
           PASSWORD CHANGE
         </Typography>

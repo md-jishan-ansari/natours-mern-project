@@ -27,7 +27,7 @@ app.use(express.json({ limit: '10kb' })); // if body is larger than 10kb than no
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// app.set("view engine", "ejs");
+app.set("view engine", "pug");
 
 // 1) GLOBAL MIDDLEWARES
 
