@@ -56,7 +56,7 @@ if (process.env.NODE_ENV === 'development') {
 // app.use(mongoSanitize());
 
 // Data sanitization against XSS
-// app.use(xss());
+app.use(xss());
 
 // Prevent parameter pollution
 app.use(
