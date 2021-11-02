@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     padding: '0px 30px',
     fontSize: 18,
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px 10px',
+    },
   },
   navLogo: {
     position: 'absolute',

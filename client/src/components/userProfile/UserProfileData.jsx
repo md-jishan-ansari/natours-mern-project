@@ -18,22 +18,17 @@ const { DB_ROUTE } = variable;
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: '#ffffff',
-    paddingLeft: 70,
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: 300,
-    },
+    padding: 10,
+    width: '100%',
+    // minWidth: '80vw',
   },
   formContainer: {
     position: 'relative',
-    padding: '50px 200px 130px',
-    [theme.breakpoints.down('md')]: {
-      padding: '50px 120px 130px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '50px 70px 130px',
-    },
+    maxWidth: 400,
+    margin: '0 auto',
+    padding: '50px 0 130px',
     [theme.breakpoints.down('xs')]: {
-      padding: '50px 30px 130px',
+      paddingLeft: '70px',
     },
   },
   formHeading: {
@@ -45,16 +40,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     position: 'absolute',
     bottom: 50,
-    right: 208,
-    [theme.breakpoints.down('md')]: {
-      right: 128,
-    },
-    [theme.breakpoints.down('sm')]: {
-      right: 78,
-    },
-    [theme.breakpoints.down('xs')]: {
-      right: 38,
-    },
+    right: 10,
     fontFamily: "'Lato', sans-serif",
     backgroundColor: '#55c57a',
     color: '#fff',

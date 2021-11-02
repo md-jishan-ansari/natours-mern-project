@@ -1,7 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, List, Typography, Divider, IconButton, Hidden } from '@mui/material';
+import {
+  Box,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  Hidden,
+} from '@mui/material';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -27,6 +34,9 @@ const drawerWidth = 300;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
+  [theme.breakpoints.down('md')]: {
+    width: 220,
+  },
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -60,30 +70,30 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': {
-        ...openedMixin(theme),
-        position: 'absolute',
-        backgroundImage: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
-      },
-    }),
-    ...(!open && {
+      position: 'absolute',
+      backgroundImage: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
+    },
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': {
-        ...closedMixin(theme),
-        position: 'absolute',
-        backgroundImage: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
-      },
-    }),
-  })
-);
+      position: 'absolute',
+      backgroundImage: 'linear-gradient(to right bottom, #7dd56f, #28b487)',
+    },
+  }),
+}));
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -94,6 +104,11 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       margin: '50px 20px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      '&>*': {
+        display: 'flex',
+      },
     },
   },
   mainContainer: {
@@ -124,7 +139,8 @@ const UserProfile = () => {
   return (
     ctx?.userData && (
       <Box className={classes.container}>
-        <Box sx={{ display: 'flex' }}>
+        {/* <Box sx={{ display: 'flex' }}> */}
+        <Box>
           <Drawer variant="permanent" open={open}>
             <Hidden mdUp>
               <DrawerHeader>
@@ -144,8 +160,15 @@ const UserProfile = () => {
                     <MenuIcon />
                   </IconButton>
                 ) : (
-                  <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
-                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                  <IconButton
+                    onClick={handleDrawerClose}
+                    style={{ color: 'white' }}
+                  >
+                    {theme.direction === 'rtl' ? (
+                      <ChevronRightIcon />
+                    ) : (
+                      <ChevronLeftIcon />
+                    )}
                   </IconButton>
                 )}
               </DrawerHeader>
@@ -187,7 +210,11 @@ const UserProfile = () => {
             </List>
             {ctx.userData.data.user.role === 'admin' && (
               <>
-                <Typography style={{ margin: '30px 0 0 10px', color: '#ffffff' }}>ADMIN</Typography>
+                <Typography
+                  style={{ margin: '30px 0 0 10px', color: '#ffffff' }}
+                >
+                  ADMIN
+                </Typography>
                 <Divider />
                 <List>
                   <ListItemComponent

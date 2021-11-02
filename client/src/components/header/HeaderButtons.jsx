@@ -1,8 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import TemplateContext from '../../template/TemplateProvider';
-import { Button, Box, makeStyles, Hidden, Avatar } from '@material-ui/core';
+import {
+  Button,
+  Box,
+  makeStyles,
+  Hidden,
+  Avatar,
+  Menu,
+  MenuItem,
+} from '@material-ui/core';
 
 import { LOGOUT_SUCCESS } from '../../redux/constants/authanticationConstant';
 
@@ -41,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#f7f7f7',
     fontFamily: 'inherit',
     padding: '5px 20px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '5px 5px',
+    },
   },
   avator: {
     backgroundColor: 'white',
@@ -49,15 +60,28 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 5,
     // border: '1px solid #ffffff',
   },
+  menu: {
+    marginTop: 60,
+    transform: 'translateX(-10px)',
+  },
 }));
 
 const HeaderButtons = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   const dispatch = useDispatch();
 
   const ctx = useContext(TemplateContext);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const clickHandler = (isSignup) => {
     if (isSignup) history.push('/auth/signup');
@@ -73,18 +97,58 @@ const HeaderButtons = () => {
     <Box className={classes.wrapper}>
       {ctx.userData ? (
         <>
-          <Button className={classes.login} onClick={logoutHandler}>
-            log out
-          </Button>
-          <Button component={Link} to="/me" className={classes.userButton}>
-            <Avatar
-              className={classes.avator}
-              src={`${DB_ROUTE}/img/users/${ctx?.userData?.data?.user?.photo}`}
+          <Hidden xsDown>
+            <Button className={classes.login} onClick={logoutHandler}>
+              log out
+            </Button>
+            <Button component={Link} to="/me" className={classes.userButton}>
+              <Avatar
+                className={classes.avator}
+                src={`${DB_ROUTE}/img/users/${ctx?.userData?.data?.user?.photo}`}
+              >
+                {ctx?.userData?.data?.user?.name.charAt(0)}
+              </Avatar>
+              {ctx?.userData?.data?.user?.name.split(' ')[0]}
+            </Button>
+          </Hidden>
+          <Hidden smUp>
+            <Button onClick={handleClick} className={classes.userButton}>
+              <Avatar
+                className={classes.avator}
+                src={`${DB_ROUTE}/img/users/${ctx?.userData?.data?.user?.photo}`}
+              >
+                {ctx?.userData?.data?.user?.name.charAt(0)}
+              </Avatar>
+            </Button>
+          </Hidden>
+
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            className={classes.menu}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push('/me');
+              }}
             >
-              {ctx?.userData?.data?.user?.name.charAt(0)}
-            </Avatar>
-            {ctx?.userData?.data?.user?.name.split(' ')[0]}
-          </Button>
+              My Account
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                logoutHandler();
+              }}
+            >
+              Logout
+            </MenuItem>
+          </Menu>
         </>
       ) : (
         <>
