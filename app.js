@@ -4,12 +4,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
+
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -20,7 +20,6 @@ const reviewRouter = require('./routes/reviewRoutes');
 
 const app = express();
 
-// app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'public'))); // app.use(express.static(`${__dirname}/public`));
 
 app.use(express.json({ limit: '10kb' })); // if body is larger than 10kb than not accepted
@@ -34,7 +33,7 @@ app.set("view engine", "pug");
 // Serving static files
 
 // Set security HTTP headers
-app.use(helmet());
+// app.use(helmet()); //helmet block reactjs
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
